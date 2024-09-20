@@ -78,7 +78,7 @@ function Home() {
       <div className="mt-4 w-full h-full">
         <iframe
           ref={iframeRef}
-          className="w-full h-screen outline-none border-none"
+          className="w-full h-screen overflow-hidden outline-none border-none"
         />
       </div>
     </div>
