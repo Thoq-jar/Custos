@@ -1,7 +1,9 @@
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const url = searchParams.get('url');
-  if (!url) return new Response(JSON.stringify({ error: 'A URL is required' }), { status: 400 });
+
+  if (!url) 
+    return new Response(JSON.stringify({ error: 'A URL is required' }), { status: 400 });
 
   try {
     const response = await fetch(url, { headers: {'User-Agent': 'Mozilla/5.0 [Custos browser 0.1.0] (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36' }});

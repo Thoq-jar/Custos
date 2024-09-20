@@ -24,8 +24,9 @@ function Home() {
 
       const lowerCaseUrl = url.toLowerCase();
 
-      if (!lowerCaseUrl.startsWith('http://') && !lowerCaseUrl.startsWith('https://')) finalUrl = `https://${lowerCaseUrl}`;
-      else finalUrl = lowerCaseUrl;
+      const cleanedUrl = lowerCaseUrl.replace(/\s+/g, '');
+      if (!cleanedUrl.startsWith('http://') && !cleanedUrl.startsWith('https://')) finalUrl = `https://${cleanedUrl}`;
+      else finalUrl = cleanedUrl;
 
       try {
         const result = await fetchWebsite(finalUrl);
@@ -59,17 +60,16 @@ function Home() {
           <input
             type="text"
             className="flex-grow p-2 rounded-l-md bg-gray-800 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter website URL"
+            placeholder="Enter website (eg. wikipedia.org)"
             value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            autoComplete="off"
+            onChange={(e) => setUrl(e.target.value.replace(/\s+/g, ''))}
           />
           <button
             type="submit"
-            className="
-              p-2 bg-blue-600 rounded-r-md 
-              hover:bg-blue-500 transition duration-200"
+            className="p-2 bg-blue-600 rounded-r-md hover:bg-blue-500 transition duration-200"
             disabled={isLoading}>
-            Search
+            Go
           </button>
         </form>
       )}
